@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<!-- <link href="css/style.css" rel="stylesheet" /> -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--<title>Bootstrap demo</title>-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+	<title>Spring Boot Application</title>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h3 style="color:red; text-align: center">Welcome to User Account Registration</h3>
+
+		<!-- <span th:text="${user}"></span>-->
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="all-user">ViewAll</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#">ContactInfo</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<div>
+			<span style="color:chartreuse; text-align: center; font-size: large;"  th:text="${msg}" > </span>
+		</div>
+
+		<form th:action="@{/save-user}" method="post" th:object="${user}">
+			<table>
+				<tr>
+					<th>
+						User Full Name:-
+					</th>
+					<td>
+						<input type="text" th:field="*{fullNameUser}" />
+						<input type="hidden" th:field="*{userId}"/>
+					</td>
+				</tr>
+				<tr>
+					<th>User Email Id:-</th>
+					<td>
+						<input type="email" th:field="*{emailIdUser}" />
+					</td>
+				</tr>
+				<tr>
+					<th>User Mobile No:-</th>
+					<td> <input type="number" th:field="*{phnNumUser}" /> </td>
+				</tr>
+				<tr>
+					<th>Gender:-</th>
+					<td>
+						<input type="radio" th:field="*{genUser}" value="Male" /><b>Male</b>
+						<input type="radio" th:field="*{genUser}" value="Female" /><b>Female</b>
+						<input type="radio" th:filed="*{genUser}" value="Other" /><b>Other</b>
+					</td>
+				</tr>
+				<tr>
+					<th>User DOB:-</th>
+					<td>
+						<input type="date" th:field="*{dobUser}" />
+					</td>
+				</tr>
+				<tr>
+					<th>SSN No:-</th>
+					<td><input type="number" th:field="*{ssnUser}"></td>
+				</tr>
+				<tr>
+					<td><input type="reset" value="Reset" class="btn btn-danger"></td>
+					<td><input type="submit" value="Submit" class="btn btn-primary"></td>
+				</tr>
+
+			</table>
+		</form>
+
+
+
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>

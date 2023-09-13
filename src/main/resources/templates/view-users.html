@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<!-- <link href="css/style.css" rel="stylesheet" /> -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap demo</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+	<title>Spring Boot Application</title>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h4>Welcome to all Users Account Details</h4>
+		<form th:action="@{/all-user}" method="get" th:object="${users}">
+			<table class="table table-border">
+				<thead>
+					<tr>
+						<th>User Id</th>
+						<th>Full Name</th>
+						<th>Email ID</th>
+						<th>Mobile Number</th>
+						<th>Gender</th>
+						<th>DOB</th>
+						<th>SSN</th>
+						<th>EDIT</th>
+						<th>Delete</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:if="${users.empty}">
+						<td colspan="2"> No User Account Available </td>
+					</tr>
+					<tr th:each="user : ${users}">
+						<td th:text="${user.userId}"></td>
+						<td th:text="${user.fullNameUser}"></td>
+						<td th:text="${user.emailIdUser}"></td>
+						<td th:text="${user.phnNumUser}"></td>
+						<td th:text="${user.genUser}"></td>
+						<td th:text="${user.dobUser}"></td>
+						<td th:text="${user.ssnUser}"></td>
+						<td><a th:href="@{/edit?(id=${user.userId})}" class="btn btn-primary">Edit</a></td>
+						<td><a th:href="@{/delete?(id=${user.userId})}" class="btn btn-danger">Delete</a></td>
+						<span th:switch="${user.activeSw}">
+							<i th:case="Y" class="fas fa-check red-text">
+								<td>
+									<a th:href="@{/update?(id=${user.userId},status=N)}" class="btn btn-danger">De-Activate</a>
+								</td>
+							</i>
+
+							<i th:case="N" class="fas fa-times orange-text">
+								<td>
+									<a th:href="@{/update?(id=${user.userId},status=Y)}" class="btn btn-success">Activate</a>
+								</td>
+
+							</i>
+
+						</span>
+					</tr>
+
+				</tbody>
+
+			</table>
+		</form>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
