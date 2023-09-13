@@ -58,6 +58,7 @@ public class UserController {
 	public String updateSwitchAsPerId(@RequestParam("id") Integer uid,
 			@RequestParam("status") String status) {
 		userService.updateUserAccStatus(uid,status);
+		System.out.println("Git checking");
 		return "redirect:/all-user";
 	}
 	
